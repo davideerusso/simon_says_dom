@@ -29,7 +29,7 @@
       <ul id="numbers-list" class="d-flex gap-5 list-unstyled"></ul>
 
       <!-- Form -->
-      <form id="answers-form" class="d-block">
+      <form id="answers-form" class="d-none">
         <div class="d-flex gap-5" id="input-group">
           <input
             type="number"
@@ -72,7 +72,9 @@
             required
           />
         </div>
-        <button class="btn btn-primary mt-2 d-block mx-auto">Conferma</button>
+        <button id="button" class="btn btn-primary mt-2 d-block mx-auto">
+          Conferma
+        </button>
         <p class="text-danger text-center" id="message"></p>
       </form>
     </div>

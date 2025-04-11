@@ -15,6 +15,9 @@ const handleCountdown = () => {
   if (remainingMs <= 0) {
     clearInterval(countdownIntervalId);
     countdown.innerText = "Tempo scaduto!";
+    numbersList.classList.add("d-none");
+    answersForm.classList.remove("d-none");
+    instructions.innerHTML = "Scrivi i numeri che ti ricordi";
   }
 };
 const timer = () => {
@@ -23,11 +26,12 @@ const timer = () => {
 };
 
 timer();
+const instructions = document.getElementById("instructions");
 
 // GENERARE 5 NUMERI RANDOM
 let NumberRandom = [];
 function GenerateArrayRandom() {
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 5; i++) {
     const numeroCasuale = Math.floor(Math.random() * 50) + 1;
     NumberRandom.push(numeroCasuale);
   }
@@ -44,34 +48,41 @@ for (let i = 0; i < NumberRandom.length; i++) {
   numbersList.appendChild(li);
 }
 
-const numeroCasuale = Math.floor(Math.random() * 50) + 1;
-
-const li = document.createElement("li");
-li.innerHTML = numeroCasuale;
-numbersList.appendChild(li);
-
-const RandomUno = Math.round(Math.random() * 50 + 1);
-countdown.innerText = "Tempo scaduto!";
-
 const answersForm = document.getElementById("answers-form");
 const inputUno = document.getElementById("input-uno");
 const inputDue = document.getElementById("input-due");
 const inputTre = document.getElementById("input-tre");
 const inputQuattro = document.getElementById("input-quattro");
 const inputCinque = document.getElementById("input-cinque");
+const message = document.getElementById("message");
+
+let truecheck = 0;
 
 answersForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  const numbersInputUno = inputUno.value;
-  const numbersInputDue = inputDue.value;
-  const numbersInputTre = inputTre.value;
-  const numbersInputQuattro = inputQuattro.value;
-  const numbersInputCinque = inputCinque.value;
+  const userInput = [
+    (numbersInputUno = inputUno.value),
+    (numbersInputDue = inputDue.value),
+    (numbersInputTre = inputTre.value),
+    (numbersInputQuattro = inputQuattro.value),
+    (numbersInputCinque = inputCinque.value),
+  ];
+
+  truecheck = 0;
+
+  userInput.forEach((input, i) => {
+    if (parseInt(input) === NumberRandom[i]) truecheck += 1;
+  });
+  console.log(truecheck);
 
   console.log(numbersInputUno);
   console.log(numbersInputDue);
   console.log(numbersInputTre);
   console.log(numbersInputQuattro);
   console.log(numbersInputCinque);
+
+  message.innerHTML = `${truecheck} numeri indovinati`;
 });
+
+message.innerHTML = "clicca per vedere quanti numeri hai indovinato";
