@@ -2,7 +2,7 @@
 
 const countdown = document.getElementById("countdown");
 
-let remainingMs = 30000;
+let remainingMs = 3000;
 let countdownIntervallId;
 
 const updateTimer = () => {
@@ -71,8 +71,8 @@ answersForm.addEventListener("submit", function (event) {
 
   truecheck = 0;
 
-  userInput.forEach((input, i) => {
-    if (parseInt(input) === NumberRandom[i]) truecheck += 1;
+  userInput.forEach((userInput, i) => {
+    if (parseInt(userInput) === NumberRandom[i]) truecheck += 1;
   });
   console.log(truecheck);
 
