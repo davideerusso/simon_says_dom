@@ -70,9 +70,12 @@ answersForm.addEventListener("submit", function (event) {
   ];
 
   truecheck = 0;
-
+  let correctNumber = [];
   userInput.forEach((userInput, i) => {
-    if (parseInt(userInput) === NumberRandom[i]) truecheck += 1;
+    if (parseInt(userInput) === NumberRandom[i]) {
+      truecheck += 1;
+      correctNumber.push(userInput);
+    }
   });
   console.log(truecheck);
 
@@ -82,7 +85,7 @@ answersForm.addEventListener("submit", function (event) {
   console.log(numbersInputQuattro);
   console.log(numbersInputCinque);
 
-  message.innerHTML = `${truecheck} numeri indovinati`;
+  message.innerHTML = `${truecheck} numeri indovinati: ${correctNumber} `;
 });
 
 message.innerHTML = "clicca per vedere quanti numeri hai indovinato";
